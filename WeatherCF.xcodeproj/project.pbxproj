@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10100000000000000000001 /* WeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000001 /* WeatherModels.swift */; };
+		A10100000000000000000002 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
+		A10100000000000000000003 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
+		A10100000000000000000004 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A10100000000000000000005 /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000006 /* WeatherController.swift */; };
+		A10100000000000000000006 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000007 /* LocationProvider.swift */; };
+		A10100000000000000000007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000008 /* ContentView.swift */; };
+		A10100000000000000000008 /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000009 /* MacApp.swift */; };
+		A10100000000000000000009 /* WeatherCFWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C10200000000000000000000 /* WeatherCFWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A20100000000000000000001 /* WeatherCFWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1010000000000000000000B /* WeatherCFWidget.swift */; };
+		A20100000000000000000002 /* WeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000001 /* WeatherModels.swift */; };
+		A20100000000000000000003 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
+		A20100000000000000000004 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
+		A20100000000000000000005 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A20100000000000000000006 /* CityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000005 /* CityIntent.swift */; };
+		A30100000000000000000001 /* WeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000001 /* WeatherModels.swift */; };
+		A30100000000000000000002 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
+		A30100000000000000000003 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
+		A30100000000000000000004 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A30100000000000000000005 /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000006 /* WeatherController.swift */; };
+		A30100000000000000000006 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000007 /* LocationProvider.swift */; };
+		A30100000000000000000007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000008 /* ContentView.swift */; };
+		A30100000000000000000008 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1010000000000000000000A /* iOSApp.swift */; };
+		A30100000000000000000009 /* WeatherCFiOSWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C10400000000000000000000 /* WeatherCFiOSWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A40100000000000000000001 /* WeatherCFWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1010000000000000000000B /* WeatherCFWidget.swift */; };
+		A40100000000000000000002 /* WeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000001 /* WeatherModels.swift */; };
+		A40100000000000000000003 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
+		A40100000000000000000004 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
+		A40100000000000000000005 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A40100000000000000000006 /* CityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000005 /* CityIntent.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D10100000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E10100000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C20100000000000000000001;
+			remoteInfo = WeatherCFWidget;
+		};
+		D30100000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E10100000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C40100000000000000000001;
+			remoteInfo = WeatherCFiOSWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F10100000000000000000001 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A10100000000000000000009 /* WeatherCFWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F30100000000000000000001 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A30100000000000000000009 /* WeatherCFiOSWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B10100000000000000000001 /* WeatherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModels.swift; sourceTree = "<group>"; };
+		B10100000000000000000002 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		B10100000000000000000003 /* WeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStore.swift; sourceTree = "<group>"; };
+		B10100000000000000000004 /* WeatherAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppearance.swift; sourceTree = "<group>"; };
+		B10100000000000000000005 /* CityIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityIntent.swift; sourceTree = "<group>"; };
+		B10100000000000000000006 /* WeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherController.swift; sourceTree = "<group>"; };
+		B10100000000000000000007 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
+		B10100000000000000000008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B10100000000000000000009 /* MacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacApp.swift; sourceTree = "<group>"; };
+		B1010000000000000000000A /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		B1010000000000000000000B /* WeatherCFWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCFWidget.swift; sourceTree = "<group>"; };
+		B1010000000000000000000C /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-macOS.plist"; sourceTree = "<group>"; };
+		B1010000000000000000000D /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
+		B1010000000000000000000E /* WeatherCF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherCF.entitlements; sourceTree = "<group>"; };
+		B1010000000000000000000F /* WeatherCF-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WeatherCF-iOS.entitlements"; sourceTree = "<group>"; };
+		B10100000000000000000010 /* WidgetInfo-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-macOS.plist"; path = "Info-macOS.plist"; sourceTree = "<group>"; };
+		B10100000000000000000011 /* WidgetInfo-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-iOS.plist"; path = "Info-iOS.plist"; sourceTree = "<group>"; };
+		B10100000000000000000012 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
+		B10100000000000000000013 /* Widget-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget-iOS.entitlements"; sourceTree = "<group>"; };
+		C10100000000000000000000 /* Weather C+F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather C+F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10200000000000000000000 /* WeatherCFWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WeatherCFWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10300000000000000000000 /* Weather C+F.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather C+F.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10400000000000000000000 /* WeatherCFiOSWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WeatherCFiOSWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F20100000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		F20100000000000000000002 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		F20100000000000000000003 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		F20100000000000000000004 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		G10100000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				G10100000000000000000002 /* Sources */,
+				B1010000000000000000000C /* Info-macOS.plist */,
+				B1010000000000000000000E /* WeatherCF.entitlements */,
+				G10100000000000000000006 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		G10100000000000000000002 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				G10100000000000000000003 /* Shared */,
+				G10100000000000000000004 /* App */,
+				G10100000000000000000005 /* Widget */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		G10100000000000000000003 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B10100000000000000000001 /* WeatherModels.swift */,
+				B10100000000000000000002 /* WeatherService.swift */,
+				B10100000000000000000003 /* WeatherStore.swift */,
+				B10100000000000000000004 /* WeatherAppearance.swift */,
+				B10100000000000000000005 /* CityIntent.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		G10100000000000000000004 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B10100000000000000000006 /* WeatherController.swift */,
+				B10100000000000000000007 /* LocationProvider.swift */,
+				B10100000000000000000008 /* ContentView.swift */,
+				B10100000000000000000009 /* MacApp.swift */,
+				B1010000000000000000000A /* iOSApp.swift */,
+				B1010000000000000000000D /* Info-iOS.plist */,
+				B1010000000000000000000F /* WeatherCF-iOS.entitlements */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		G10100000000000000000005 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				B1010000000000000000000B /* WeatherCFWidget.swift */,
+				B10100000000000000000010 /* WidgetInfo-macOS.plist */,
+				B10100000000000000000011 /* WidgetInfo-iOS.plist */,
+				B10100000000000000000012 /* Widget.entitlements */,
+				B10100000000000000000013 /* Widget-iOS.entitlements */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		G10100000000000000000006 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C10100000000000000000000 /* Weather C+F.app */,
+				C10200000000000000000000 /* WeatherCFWidget.appex */,
+				C10300000000000000000000 /* Weather C+F.app */,
+				C10400000000000000000000 /* WeatherCFiOSWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C10100000000000000000001 /* WeatherCF */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = H10100000000000000000001 /* Build configuration list for PBXNativeTarget "WeatherCF" */;
+			buildPhases = (
+				I10100000000000000000001 /* Sources */,
+				F20100000000000000000001 /* Frameworks */,
+				F10100000000000000000001 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				J10100000000000000000001 /* PBXTargetDependency */,
+			);
+			name = WeatherCF;
+			productName = WeatherCF;
+			productReference = C10100000000000000000000 /* Weather C+F.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C20100000000000000000001 /* WeatherCFWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = H10100000000000000000002 /* Build configuration list for PBXNativeTarget "WeatherCFWidget" */;
+			buildPhases = (
+				I20100000000000000000001 /* Sources */,
+				F20100000000000000000002 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeatherCFWidget;
+			productName = WeatherCFWidget;
+			productReference = C10200000000000000000000 /* WeatherCFWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C30100000000000000000001 /* WeatherCF-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = H10100000000000000000003 /* Build configuration list for PBXNativeTarget "WeatherCF-iOS" */;
+			buildPhases = (
+				I30100000000000000000001 /* Sources */,
+				F20100000000000000000003 /* Frameworks */,
+				F30100000000000000000001 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				J30100000000000000000001 /* PBXTargetDependency */,
+			);
+			name = "WeatherCF-iOS";
+			productName = "WeatherCF-iOS";
+			productReference = C10300000000000000000000 /* Weather C+F.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C40100000000000000000001 /* WeatherCFiOSWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = H10100000000000000000004 /* Build configuration list for PBXNativeTarget "WeatherCFiOSWidget" */;
+			buildPhases = (
+				I40100000000000000000001 /* Sources */,
+				F20100000000000000000004 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WeatherCFiOSWidget;
+			productName = WeatherCFiOSWidget;
+			productReference = C10400000000000000000000 /* WeatherCFiOSWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E10100000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					C30100000000000000000001 = {
+						ProvisioningStyle = Automatic;
+					};
+					C40100000000000000000001 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = H10100000000000000000005 /* Build configuration list for PBXProject "WeatherCF" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = G10100000000000000000001;
+			productRefGroup = G10100000000000000000006 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C10100000000000000000001 /* WeatherCF */,
+				C20100000000000000000001 /* WeatherCFWidget */,
+				C30100000000000000000001 /* WeatherCF-iOS */,
+				C40100000000000000000001 /* WeatherCFiOSWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		I10100000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10100000000000000000001 /* WeatherModels.swift in Sources */,
+				A10100000000000000000002 /* WeatherService.swift in Sources */,
+				A10100000000000000000003 /* WeatherStore.swift in Sources */,
+				A10100000000000000000004 /* WeatherAppearance.swift in Sources */,
+				A10100000000000000000005 /* WeatherController.swift in Sources */,
+				A10100000000000000000006 /* LocationProvider.swift in Sources */,
+				A10100000000000000000007 /* ContentView.swift in Sources */,
+				A10100000000000000000008 /* MacApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		I20100000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20100000000000000000001 /* WeatherCFWidget.swift in Sources */,
+				A20100000000000000000002 /* WeatherModels.swift in Sources */,
+				A20100000000000000000003 /* WeatherService.swift in Sources */,
+				A20100000000000000000004 /* WeatherStore.swift in Sources */,
+				A20100000000000000000005 /* WeatherAppearance.swift in Sources */,
+				A20100000000000000000006 /* CityIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		I30100000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A30100000000000000000001 /* WeatherModels.swift in Sources */,
+				A30100000000000000000002 /* WeatherService.swift in Sources */,
+				A30100000000000000000003 /* WeatherStore.swift in Sources */,
+				A30100000000000000000004 /* WeatherAppearance.swift in Sources */,
+				A30100000000000000000005 /* WeatherController.swift in Sources */,
+				A30100000000000000000006 /* LocationProvider.swift in Sources */,
+				A30100000000000000000007 /* ContentView.swift in Sources */,
+				A30100000000000000000008 /* iOSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		I40100000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A40100000000000000000001 /* WeatherCFWidget.swift in Sources */,
+				A40100000000000000000002 /* WeatherModels.swift in Sources */,
+				A40100000000000000000003 /* WeatherService.swift in Sources */,
+				A40100000000000000000004 /* WeatherStore.swift in Sources */,
+				A40100000000000000000005 /* WeatherAppearance.swift in Sources */,
+				A40100000000000000000006 /* CityIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		J10100000000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C20100000000000000000001 /* WeatherCFWidget */;
+			targetProxy = D10100000000000000000001 /* PBXContainerItemProxy */;
+		};
+		J30100000000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C40100000000000000000001 /* WeatherCFiOSWidget */;
+			targetProxy = D30100000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		K10100000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		K10100000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		K10100000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WeatherCF.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Info-macOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.app;
+				PRODUCT_NAME = "Weather C+F";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		K10100000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WeatherCF.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Info-macOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.app;
+				PRODUCT_NAME = "Weather C+F";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		K10100000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Widget/Widget.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Sources/Widget/Info-macOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.app.widget;
+				PRODUCT_NAME = WeatherCFWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		K10100000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Widget/Widget.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Sources/Widget/Info-macOS.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.app.widget;
+				PRODUCT_NAME = WeatherCFWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		K10100000000000000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Sources/App/WeatherCF-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Sources/App/Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.ios;
+				PRODUCT_NAME = "Weather C+F";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		K10100000000000000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Sources/App/WeatherCF-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Sources/App/Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.ios;
+				PRODUCT_NAME = "Weather C+F";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		K10100000000000000000009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Sources/Widget/Widget-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Sources/Widget/Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.ios.widget;
+				PRODUCT_NAME = WeatherCFiOSWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		K1010000000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Sources/Widget/Widget-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Sources/Widget/Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.weathercf.ios.widget;
+				PRODUCT_NAME = WeatherCFiOSWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		H10100000000000000000001 /* Build configuration list for PBXNativeTarget "WeatherCF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				K10100000000000000000003 /* Debug */,
+				K10100000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		H10100000000000000000002 /* Build configuration list for PBXNativeTarget "WeatherCFWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				K10100000000000000000005 /* Debug */,
+				K10100000000000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		H10100000000000000000003 /* Build configuration list for PBXNativeTarget "WeatherCF-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				K10100000000000000000007 /* Debug */,
+				K10100000000000000000008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		H10100000000000000000004 /* Build configuration list for PBXNativeTarget "WeatherCFiOSWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				K10100000000000000000009 /* Debug */,
+				K1010000000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		H10100000000000000000005 /* Build configuration list for PBXProject "WeatherCF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				K10100000000000000000001 /* Debug */,
+				K10100000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E10100000000000000000001 /* Project object */;
+}
