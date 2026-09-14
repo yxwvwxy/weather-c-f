@@ -1,6 +1,7 @@
 import AppKit
 import Combine
 import CoreGraphics
+import ServiceManagement
 import SwiftUI
 
 extension Notification.Name {
@@ -29,6 +30,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        NSApp.disableRelaunchOnLogin()
+        try? SMAppService.mainApp.unregister()
         setupMainMenu()
         setupStatusItem()
         NotificationCenter.default.addObserver(self, selector: #selector(putOnDesktop), name: .putWeatherOnDesktop, object: nil)
@@ -136,6 +139,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.setContentSize(NSSize(width: 340, height: 620))
         window.minSize = NSSize(width: 300, height: 420)
         window.center()
+        window.isRestorable = false
         window.level = desktopWidgetLevel
 
         let controller = NSWindowController(window: window)
