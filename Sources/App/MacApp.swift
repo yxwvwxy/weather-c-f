@@ -24,6 +24,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var windowController: NSWindowController?
     private var statusItem: NSStatusItem?
     private var statusObserver: AnyCancellable?
+    private var pinnedToDesktop = true
+    private let frameAutosaveName = "WeatherCF.desktopFrame"
 
     private var desktopWidgetLevel: NSWindow.Level {
         NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.desktopIconWindow)) + 1)
@@ -51,31 +53,69 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         false
     }
 
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        false
+    }
+
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        putOnDesktop()
+        bringWeatherForward()
         return true
+    }
+
+    func applicationDidBecomeActive(_ notification: Notification) {
+        bringWeatherForward()
+    }
+
+    func applicationDidResignActive(_ notification: Notification) {
+        guard pinnedToDesktop, let window = weatherWindow() else { return }
+        sinkToDesktop(window)
     }
 
     @objc
     func showAsWindow() {
-        guard let window = weatherWindow() else { return }
+        pinnedToDesktop = false
+        guard let window = weatherWindow() as? DesktopWidgetWindow else { return }
+        window.pinnedToDesktop = false
         window.level = .normal
         window.collectionBehavior = [.moveToActiveSpace, .fullScreenAuxiliary]
-        window.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
+        bringWeatherForward()
     }
 
     @objc
     func putOnDesktop() {
-        guard let window = weatherWindow() else { return }
-        window.level = desktopWidgetLevel
-        window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-        window.orderFrontRegardless()
+        pinnedToDesktop = true
+        guard let window = weatherWindow() as? DesktopWidgetWindow else { return }
+        window.pinnedToDesktop = true
+        window.desktopWidgetLevel = desktopWidgetLevel
+        sinkToDesktop(window)
     }
 
     @objc
     func quitApp() {
         NSApp.terminate(nil)
+    }
+
+    private func bringWeatherForward() {
+        guard let window = weatherWindow() as? DesktopWidgetWindow else { return }
+        window.isMovable = true
+        window.isMovableByWindowBackground = true
+        window.level = .normal
+        window.collectionBehavior = [.canJoinAllSpaces, .moveToActiveSpace]
+        if window.isMiniaturized {
+            window.deminiaturize(nil)
+        }
+        window.makeKeyAndOrderFront(nil)
+        if !NSApp.isActive {
+            NSApp.activate(ignoringOtherApps: true)
+        }
+        window.orderFrontRegardless()
+    }
+
+    private func sinkToDesktop(_ window: NSWindow) {
+        window.hidesOnDeactivate = false
+        window.level = desktopWidgetLevel
+        window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+        window.orderFrontRegardless()
     }
 
     private func weatherWindow() -> NSWindow? {
@@ -128,22 +168,83 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func makeWindowController() -> NSWindowController {
         let view = ContentView(weather: WeatherController.shared)
         let hosting = NSHostingController(rootView: view)
-        let window = NSWindow(contentViewController: hosting)
+        let window = DesktopWidgetWindow(contentViewController: hosting)
         window.title = "天气 C+F"
-        window.styleMask = [.titled, .closable, .miniaturizable, .resizable]
+        window.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         window.titlebarAppearsTransparent = true
         window.titleVisibility = .hidden
         window.isReleasedWhenClosed = false
+        window.isOpaque = true
         window.isMovableByWindowBackground = true
         window.backgroundColor = NSColor(red: 0.18, green: 0.38, blue: 0.78, alpha: 1)
-        window.setContentSize(NSSize(width: 340, height: 620))
-        window.minSize = NSSize(width: 300, height: 420)
-        window.center()
+        window.contentMinSize = NSSize(width: 300, height: 420)
         window.isRestorable = false
+        window.hidesOnDeactivate = false
+        window.pinnedToDesktop = true
+        window.desktopWidgetLevel = desktopWidgetLevel
+        window.setFrameAutosaveName(frameAutosaveName)
+        if !window.setFrameUsingName(frameAutosaveName) {
+            placeDefaultFrame(window)
+        }
         window.level = desktopWidgetLevel
 
+        NotificationCenter.default.addObserver(
+            forName: NSWindow.didMoveNotification,
+            object: window,
+            queue: .main
+        ) { [frameAutosaveName] note in
+            guard let window = note.object as? NSWindow else { return }
+            let visible = window.screen?.visibleFrame ?? NSScreen.main?.visibleFrame
+            if let visible, visible.intersects(window.frame) {
+                window.saveFrame(usingName: frameAutosaveName)
+            }
+        }
+        NotificationCenter.default.addObserver(
+            forName: NSWindow.didEndLiveResizeNotification,
+            object: window,
+            queue: .main
+        ) { [frameAutosaveName] note in
+            (note.object as? NSWindow)?.saveFrame(usingName: frameAutosaveName)
+        }
+
         let controller = NSWindowController(window: window)
-        controller.showWindow(nil)
+        window.orderFrontRegardless()
         return controller
+    }
+
+    private func placeDefaultFrame(_ window: NSWindow) {
+        let size = NSSize(width: 340, height: 620)
+        let visible = (NSScreen.main ?? NSScreen.screens.first)?.visibleFrame ?? NSRect(x: 0, y: 0, width: 1440, height: 900)
+        let origin = NSPoint(
+            x: visible.maxX - size.width - 28,
+            y: visible.maxY - size.height - 28
+        )
+        window.setContentSize(size)
+        window.setFrameOrigin(origin)
+    }
+}
+
+private final class DesktopWidgetWindow: NSWindow {
+    var pinnedToDesktop = true
+    var desktopWidgetLevel: NSWindow.Level = .normal
+
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { true }
+
+    override func becomeKey() {
+        super.becomeKey()
+        isMovable = true
+        isMovableByWindowBackground = true
+        if pinnedToDesktop {
+            level = .normal
+        }
+    }
+
+    override func resignKey() {
+        super.resignKey()
+        if pinnedToDesktop {
+            hidesOnDeactivate = false
+            level = desktopWidgetLevel
+        }
     }
 }
