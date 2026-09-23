@@ -21,6 +21,24 @@ struct DailyForecast: Hashable, Identifiable {
     var weatherCode: Int
 }
 
+enum HourlyKind: Hashable {
+    case hour
+    case sunset
+    case sunrise
+}
+
+struct HourlyForecast: Hashable, Identifiable {
+    var id: String { "\(Int(time.timeIntervalSince1970))-\(kind)" }
+    var time: Date
+    var label: String
+    var celsius: Double
+    var weatherCode: Int
+    var isDay: Bool
+    var kind: HourlyKind
+
+    var fahrenheit: Double { WeatherSnapshot.fahrenheit(from: celsius) }
+}
+
 struct WeatherSnapshot: Hashable {
     var celsius: Double
     var feelsLikeC: Double
@@ -30,6 +48,7 @@ struct WeatherSnapshot: Hashable {
     var isDay: Bool
     var highC: Double
     var lowC: Double
+    var hourly: [HourlyForecast]
     var daily: [DailyForecast]
     var updatedAt: Date
 
@@ -37,6 +56,11 @@ struct WeatherSnapshot: Hashable {
     var feelsLikeF: Double { Self.fahrenheit(from: feelsLikeC) }
     var highF: Double { Self.fahrenheit(from: highC) }
     var lowF: Double { Self.fahrenheit(from: lowC) }
+
+    var conditionLabel: String {
+        if windKmh >= 25 { return "Windy" }
+        return WeatherAppearance.resolve(code: weatherCode, isDay: isDay).label
+    }
 
     static func fahrenheit(from celsius: Double) -> Double {
         celsius * 9 / 5 + 32
@@ -68,11 +92,11 @@ enum WeatherError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .invalidURL: return "天气地址无效。"
-        case .badResponse: return "天气数据暂时无法获取。"
-        case .noResults: return "没有找到这座城市。"
-        case .locationDenied: return "没有位置权限，请在系统设置里允许，或手动搜索城市。"
-        case .locationFailed: return "定位失败，请手动搜索城市。"
+        case .invalidURL: return "The weather URL is invalid."
+        case .badResponse: return "Weather data is temporarily unavailable."
+        case .noResults: return "No matching city was found."
+        case .locationDenied: return "Location access is off. Allow it in Settings, or search for a city."
+        case .locationFailed: return "Could not get your location. Search for a city instead."
         }
     }
 }

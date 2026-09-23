@@ -11,6 +11,7 @@
 		A10100000000000000000002 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
 		A10100000000000000000003 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
 		A10100000000000000000004 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A1010000000000000000000A /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000014 /* WeatherCard.swift */; };
 		A10100000000000000000005 /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000006 /* WeatherController.swift */; };
 		A10100000000000000000006 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000007 /* LocationProvider.swift */; };
 		A10100000000000000000007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000008 /* ContentView.swift */; };
@@ -21,11 +22,13 @@
 		A20100000000000000000003 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
 		A20100000000000000000004 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
 		A20100000000000000000005 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A20100000000000000000007 /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000014 /* WeatherCard.swift */; };
 		A20100000000000000000006 /* CityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000005 /* CityIntent.swift */; };
 		A30100000000000000000001 /* WeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000001 /* WeatherModels.swift */; };
 		A30100000000000000000002 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
 		A30100000000000000000003 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
 		A30100000000000000000004 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A3010000000000000000000A /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000014 /* WeatherCard.swift */; };
 		A30100000000000000000005 /* WeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000006 /* WeatherController.swift */; };
 		A30100000000000000000006 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000007 /* LocationProvider.swift */; };
 		A30100000000000000000007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000008 /* ContentView.swift */; };
@@ -36,6 +39,7 @@
 		A40100000000000000000003 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000002 /* WeatherService.swift */; };
 		A40100000000000000000004 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000003 /* WeatherStore.swift */; };
 		A40100000000000000000005 /* WeatherAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000004 /* WeatherAppearance.swift */; };
+		A40100000000000000000007 /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000014 /* WeatherCard.swift */; };
 		A40100000000000000000006 /* CityIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10100000000000000000005 /* CityIntent.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +90,7 @@
 		B10100000000000000000002 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		B10100000000000000000003 /* WeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStore.swift; sourceTree = "<group>"; };
 		B10100000000000000000004 /* WeatherAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppearance.swift; sourceTree = "<group>"; };
+		B10100000000000000000014 /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
 		B10100000000000000000005 /* CityIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityIntent.swift; sourceTree = "<group>"; };
 		B10100000000000000000006 /* WeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherController.swift; sourceTree = "<group>"; };
 		B10100000000000000000007 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
@@ -142,6 +147,7 @@
 				B10100000000000000000002 /* WeatherService.swift */,
 				B10100000000000000000003 /* WeatherStore.swift */,
 				B10100000000000000000004 /* WeatherAppearance.swift */,
+				B10100000000000000000014 /* WeatherCard.swift */,
 				B10100000000000000000005 /* CityIntent.swift */,
 			);
 			path = Shared;
@@ -304,6 +310,7 @@
 				A10100000000000000000002 /* WeatherService.swift in Sources */,
 				A10100000000000000000003 /* WeatherStore.swift in Sources */,
 				A10100000000000000000004 /* WeatherAppearance.swift in Sources */,
+				A1010000000000000000000A /* WeatherCard.swift in Sources */,
 				A10100000000000000000005 /* WeatherController.swift in Sources */,
 				A10100000000000000000006 /* LocationProvider.swift in Sources */,
 				A10100000000000000000007 /* ContentView.swift in Sources */,
@@ -320,6 +327,7 @@
 				A20100000000000000000003 /* WeatherService.swift in Sources */,
 				A20100000000000000000004 /* WeatherStore.swift in Sources */,
 				A20100000000000000000005 /* WeatherAppearance.swift in Sources */,
+				A20100000000000000000007 /* WeatherCard.swift in Sources */,
 				A20100000000000000000006 /* CityIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +340,7 @@
 				A30100000000000000000002 /* WeatherService.swift in Sources */,
 				A30100000000000000000003 /* WeatherStore.swift in Sources */,
 				A30100000000000000000004 /* WeatherAppearance.swift in Sources */,
+				A3010000000000000000000A /* WeatherCard.swift in Sources */,
 				A30100000000000000000005 /* WeatherController.swift in Sources */,
 				A30100000000000000000006 /* LocationProvider.swift in Sources */,
 				A30100000000000000000007 /* ContentView.swift in Sources */,
@@ -348,6 +357,7 @@
 				A40100000000000000000003 /* WeatherService.swift in Sources */,
 				A40100000000000000000004 /* WeatherStore.swift in Sources */,
 				A40100000000000000000005 /* WeatherAppearance.swift in Sources */,
+				A40100000000000000000007 /* WeatherCard.swift in Sources */,
 				A40100000000000000000006 /* CityIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

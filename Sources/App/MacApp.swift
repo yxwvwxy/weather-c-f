@@ -3,6 +3,7 @@ import Combine
 import CoreGraphics
 import ServiceManagement
 import SwiftUI
+import WidgetKit
 
 extension Notification.Name {
     static let putWeatherOnDesktop = Notification.Name("putWeatherOnDesktop")
@@ -25,7 +26,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private var statusObserver: AnyCancellable?
     private var pinnedToDesktop = true
-    private let frameAutosaveName = "WeatherCF.desktopFrame"
+    private let frameAutosaveName = "WeatherCF.desktopFrame.v3"
 
     private var desktopWidgetLevel: NSWindow.Level {
         NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.desktopIconWindow)) + 1)
@@ -37,6 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         setupMainMenu()
         setupStatusItem()
         NotificationCenter.default.addObserver(self, selector: #selector(putOnDesktop), name: .putWeatherOnDesktop, object: nil)
+        registerWidgetExtension()
         Task { @MainActor in
             let weather = WeatherController.shared
             weather.start()
@@ -91,8 +93,44 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc
+    func addDesktopWidget() {
+        registerWidgetExtension()
+        let alert = NSAlert()
+        alert.messageText = "Add Weather C+F as a Widget"
+        alert.informativeText = """
+        The app window can stay pinned to the desktop.
+
+        To add the system widget:
+        1. Right-click an empty area of the desktop.
+        2. Choose Edit Widgets.
+        3. Search for Weather C+F.
+        4. Add Small, Medium, or Large — each shows °F and °C together.
+        """
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+    }
+
+    @objc
     func quitApp() {
         NSApp.terminate(nil)
+    }
+
+    private func registerWidgetExtension() {
+        guard let appex = Bundle.main.builtInPlugInsURL?
+            .appendingPathComponent("WeatherCFWidget.appex") else { return }
+        let add = Process()
+        add.executableURL = URL(fileURLWithPath: "/usr/bin/pluginkit")
+        add.arguments = ["-a", appex.path]
+        try? add.run()
+        add.waitUntilExit()
+
+        let enable = Process()
+        enable.executableURL = URL(fileURLWithPath: "/usr/bin/pluginkit")
+        enable.arguments = ["-e", "use", "-i", "com.weathercf.app.widget"]
+        try? enable.run()
+        enable.waitUntilExit()
+
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     private func bringWeatherForward() {
@@ -130,10 +168,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let appItem = NSMenuItem()
         let appMenu = NSMenu()
-        appMenu.addItem(withTitle: "放到桌面", action: #selector(putOnDesktop), keyEquivalent: "d")
-        appMenu.addItem(withTitle: "作为窗口打开", action: #selector(showAsWindow), keyEquivalent: "n")
+        appMenu.addItem(withTitle: "Pin to Desktop", action: #selector(putOnDesktop), keyEquivalent: "d")
+        appMenu.addItem(withTitle: "Open as Window", action: #selector(showAsWindow), keyEquivalent: "n")
+        appMenu.addItem(withTitle: "Add System Widget…", action: #selector(addDesktopWidget), keyEquivalent: "")
         appMenu.addItem(.separator())
-        appMenu.addItem(withTitle: "退出天气 C+F", action: #selector(quitApp), keyEquivalent: "q")
+        appMenu.addItem(withTitle: "Quit Weather C+F", action: #selector(quitApp), keyEquivalent: "q")
         appItem.submenu = appMenu
         mainMenu.addItem(appItem)
 
@@ -152,15 +191,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func setupStatusItem() {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = item.button {
-            button.title = "天气 C+F"
+            button.title = "Weather C+F"
             button.font = .systemFont(ofSize: 12, weight: .medium)
-            button.toolTip = "天气 C+F"
+            button.toolTip = "Weather C+F"
         }
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "放到桌面", action: #selector(putOnDesktop), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "作为窗口打开", action: #selector(showAsWindow), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Pin to Desktop", action: #selector(putOnDesktop), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Open as Window", action: #selector(showAsWindow), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Add System Widget…", action: #selector(addDesktopWidget), keyEquivalent: ""))
         menu.addItem(.separator())
-        menu.addItem(NSMenuItem(title: "退出", action: #selector(quitApp), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApp), keyEquivalent: "q"))
         item.menu = menu
         statusItem = item
     }
@@ -169,15 +209,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let view = ContentView(weather: WeatherController.shared)
         let hosting = NSHostingController(rootView: view)
         let window = DesktopWidgetWindow(contentViewController: hosting)
-        window.title = "天气 C+F"
+        window.title = "Weather C+F"
         window.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         window.titlebarAppearsTransparent = true
         window.titleVisibility = .hidden
         window.isReleasedWhenClosed = false
         window.isOpaque = true
         window.isMovableByWindowBackground = true
-        window.backgroundColor = NSColor(red: 0.18, green: 0.38, blue: 0.78, alpha: 1)
-        window.contentMinSize = NSSize(width: 300, height: 420)
+        window.backgroundColor = NSColor(red: 0.16, green: 0.18, blue: 0.15, alpha: 1)
+        window.contentMinSize = NSSize(width: 380, height: 460)
+        window.hasShadow = true
         window.isRestorable = false
         window.hidesOnDeactivate = false
         window.pinnedToDesktop = true
@@ -186,6 +227,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if !window.setFrameUsingName(frameAutosaveName) {
             placeDefaultFrame(window)
         }
+        ensureComfortableSize(window)
+        clampToVisibleScreen(window)
         window.level = desktopWidgetLevel
 
         NotificationCenter.default.addObserver(
@@ -213,14 +256,47 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func placeDefaultFrame(_ window: NSWindow) {
-        let size = NSSize(width: 340, height: 620)
-        let visible = (NSScreen.main ?? NSScreen.screens.first)?.visibleFrame ?? NSRect(x: 0, y: 0, width: 1440, height: 900)
+        let size = NSSize(width: 400, height: 480)
+        let visible = preferredScreen.visibleFrame
         let origin = NSPoint(
             x: visible.maxX - size.width - 28,
-            y: visible.maxY - size.height - 28
+            y: max(visible.minY + 24, visible.maxY - size.height - 28)
         )
-        window.setContentSize(size)
-        window.setFrameOrigin(origin)
+        window.setFrame(NSRect(origin: origin, size: size), display: true)
+    }
+
+    private var preferredScreen: NSScreen {
+        NSScreen.screens.first(where: { $0.frame.origin == .zero })
+            ?? NSScreen.main
+            ?? NSScreen.screens[0]
+    }
+
+    private func ensureComfortableSize(_ window: NSWindow) {
+        var frame = window.frame
+        let minSize = NSSize(width: 400, height: 480)
+        if frame.width < minSize.width || frame.height < minSize.height {
+            let extraWidth = max(0, minSize.width - frame.width)
+            let extraHeight = max(0, minSize.height - frame.height)
+            frame.size.width = max(frame.width, minSize.width)
+            frame.size.height = max(frame.height, minSize.height)
+            frame.origin.x -= extraWidth
+            frame.origin.y -= extraHeight
+            window.setFrame(frame, display: true)
+        }
+    }
+
+    private func clampToVisibleScreen(_ window: NSWindow) {
+        let frame = window.frame
+        let visibleFrames = NSScreen.screens.map(\.visibleFrame)
+        let fullyVisible = visibleFrames.contains { $0.contains(frame) }
+        let mostlyVisible = visibleFrames.contains { screen in
+            screen.intersection(frame).width >= min(frame.width, 280)
+                && screen.intersection(frame).height >= min(frame.height, 360)
+        }
+        if fullyVisible || mostlyVisible {
+            return
+        }
+        placeDefaultFrame(window)
     }
 }
 

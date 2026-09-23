@@ -10,13 +10,13 @@ xcodebuild \
   -project "WeatherCF.xcodeproj" \
   -scheme WeatherCF \
   -configuration Release \
-  -derivedDataPath "$root/build" \
+  -derivedDataPath "$root/build-release" \
   CODE_SIGNING_ALLOWED=NO \
   CODE_SIGNING_REQUIRED=NO \
   DEVELOPMENT_TEAM="" \
   build
 
-built="$(find "$root/build/Build/Products/Release" -maxdepth 2 -name "Weather C+F.app" -print -quit)"
+built="$(find "$root/build-release/Build/Products/Release" -maxdepth 2 -name "Weather C+F.app" -print -quit)"
 if [[ -z "$built" ]]; then
   echo "Build succeeded but the app bundle was not found." >&2
   exit 1
@@ -32,6 +32,9 @@ fix_and_sign() {
   plutil -replace CFBundleExecutable -string "Weather C+F" "$app/Contents/Info.plist" >/dev/null
   strip_attrs "$app"
   local appex="$app/Contents/PlugIns/WeatherCFWidget.appex"
+  find "$app" -name "*.dylib" -print0 | while IFS= read -r -d '' dylib; do
+    codesign --force --sign - --timestamp=none "$dylib"
+  done
   if [[ -d "$appex" ]]; then
     codesign --force --sign - --entitlements "$root/Sources/Widget/Widget.entitlements" --timestamp=none "$appex"
   fi

@@ -4,6 +4,7 @@
 /build
 /build-ios
 /build-mac
+/build-release
 xcuserdata/
 *.xcuserstate
 /Weather C+F.app

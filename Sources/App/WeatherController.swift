@@ -17,21 +17,43 @@ final class WeatherController: ObservableObject {
     private var refreshTask: Task<Void, Never>?
 
     var statusTitle: String {
-        guard let snapshot else { return "天气 C+F" }
+        guard let snapshot else { return "Weather C+F" }
         return "\(WeatherSnapshot.format(snapshot.celsius))°C  \(WeatherSnapshot.format(snapshot.fahrenheit))°F"
     }
 
     init() {
-        place = WeatherStore.place
+        place = Self.englishPlace(WeatherStore.place)
     }
 
     func start() {
-        if place == nil {
-            place = PopularCity.all.first
-            WeatherStore.place = place
-        }
-        refresh()
         startTimer()
+        if place != nil {
+            refresh()
+        }
+    }
+
+    func useCurrentLocation(_ provider: LocationProvider) async {
+        isLoading = true
+        errorMessage = nil
+        do {
+            let current = try await provider.currentPlace()
+            select(current)
+            provider.onPlaceChange = { [weak self] place in
+                self?.select(place)
+            }
+            provider.startMonitoring()
+        } catch {
+            errorMessage = error.localizedDescription
+            if place != nil {
+                refresh()
+            }
+            isLoading = false
+        }
+    }
+
+    private static func englishPlace(_ place: SavedPlace?) -> SavedPlace? {
+        guard let place else { return nil }
+        return PopularCity.all.first { $0.id == place.id } ?? place
     }
 
     func refresh() {

@@ -7,41 +7,41 @@ struct WeatherAppearance {
     static func resolve(code: Int, isDay: Bool = true) -> WeatherAppearance {
         switch code {
         case 0:
-            return WeatherAppearance(symbol: isDay ? "sun.max.fill" : "moon.stars.fill", label: "晴")
+            return WeatherAppearance(symbol: isDay ? "sun.max.fill" : "moon.stars.fill", label: "Clear")
         case 1:
-            return WeatherAppearance(symbol: isDay ? "sun.min.fill" : "moon.fill", label: "大部晴朗")
+            return WeatherAppearance(symbol: isDay ? "sun.min.fill" : "moon.fill", label: "Mostly clear")
         case 2:
-            return WeatherAppearance(symbol: isDay ? "cloud.sun.fill" : "cloud.moon.fill", label: "多云")
+            return WeatherAppearance(symbol: isDay ? "cloud.sun.fill" : "cloud.moon.fill", label: "Partly cloudy")
         case 3:
-            return WeatherAppearance(symbol: "cloud.fill", label: "阴")
+            return WeatherAppearance(symbol: "cloud.fill", label: "Overcast")
         case 45, 48:
-            return WeatherAppearance(symbol: "cloud.fog.fill", label: "雾")
+            return WeatherAppearance(symbol: "cloud.fog.fill", label: "Fog")
         case 51, 53, 55:
-            return WeatherAppearance(symbol: "cloud.drizzle.fill", label: "毛毛雨")
+            return WeatherAppearance(symbol: "cloud.drizzle.fill", label: "Drizzle")
         case 56, 57:
-            return WeatherAppearance(symbol: "cloud.sleet.fill", label: "冻毛毛雨")
+            return WeatherAppearance(symbol: "cloud.sleet.fill", label: "Freezing drizzle")
         case 61, 63:
-            return WeatherAppearance(symbol: "cloud.rain.fill", label: "雨")
+            return WeatherAppearance(symbol: "cloud.rain.fill", label: "Rain")
         case 65:
-            return WeatherAppearance(symbol: "cloud.heavyrain.fill", label: "大雨")
+            return WeatherAppearance(symbol: "cloud.heavyrain.fill", label: "Heavy rain")
         case 66, 67:
-            return WeatherAppearance(symbol: "cloud.sleet.fill", label: "冻雨")
+            return WeatherAppearance(symbol: "cloud.sleet.fill", label: "Freezing rain")
         case 71, 73:
-            return WeatherAppearance(symbol: "cloud.snow.fill", label: "雪")
+            return WeatherAppearance(symbol: "cloud.snow.fill", label: "Snow")
         case 75, 77:
-            return WeatherAppearance(symbol: "snowflake", label: "大雪")
+            return WeatherAppearance(symbol: "snowflake", label: "Heavy snow")
         case 80, 81:
-            return WeatherAppearance(symbol: isDay ? "cloud.sun.rain.fill" : "cloud.moon.rain.fill", label: "阵雨")
+            return WeatherAppearance(symbol: isDay ? "cloud.sun.rain.fill" : "cloud.moon.rain.fill", label: "Showers")
         case 82:
-            return WeatherAppearance(symbol: "cloud.heavyrain.fill", label: "强阵雨")
+            return WeatherAppearance(symbol: "cloud.heavyrain.fill", label: "Heavy showers")
         case 85, 86:
-            return WeatherAppearance(symbol: "cloud.snow.fill", label: "阵雪")
+            return WeatherAppearance(symbol: "cloud.snow.fill", label: "Snow showers")
         case 95:
-            return WeatherAppearance(symbol: "cloud.bolt.rain.fill", label: "雷阵雨")
+            return WeatherAppearance(symbol: "cloud.bolt.rain.fill", label: "Thunderstorm")
         case 96, 99:
-            return WeatherAppearance(symbol: "cloud.bolt.rain.fill", label: "雷暴冰雹")
+            return WeatherAppearance(symbol: "cloud.bolt.rain.fill", label: "Thunderstorm with hail")
         default:
-            return WeatherAppearance(symbol: "cloud.fill", label: "天气")
+            return WeatherAppearance(symbol: "cloud.fill", label: "Weather")
         }
     }
 
@@ -71,17 +71,17 @@ struct WeatherAppearance {
 
 enum PopularCity {
     static let all: [SavedPlace] = [
-        SavedPlace(name: "北京", detail: "中国", latitude: 39.9042, longitude: 116.4074),
-        SavedPlace(name: "上海", detail: "中国", latitude: 31.2304, longitude: 121.4737),
-        SavedPlace(name: "香港", detail: "中国", latitude: 22.3193, longitude: 114.1694),
-        SavedPlace(name: "台北", detail: "台湾", latitude: 25.0330, longitude: 121.5654),
-        SavedPlace(name: "纽约", detail: "美国", latitude: 40.7128, longitude: -74.0060),
-        SavedPlace(name: "旧金山", detail: "美国", latitude: 37.7749, longitude: -122.4194),
-        SavedPlace(name: "洛杉矶", detail: "美国", latitude: 34.0522, longitude: -118.2437),
-        SavedPlace(name: "伦敦", detail: "英国", latitude: 51.5072, longitude: -0.1276),
-        SavedPlace(name: "巴黎", detail: "法国", latitude: 48.8566, longitude: 2.3522),
-        SavedPlace(name: "东京", detail: "日本", latitude: 35.6762, longitude: 139.6503),
-        SavedPlace(name: "新加坡", detail: "新加坡", latitude: 1.3521, longitude: 103.8198),
-        SavedPlace(name: "悉尼", detail: "澳大利亚", latitude: -33.8688, longitude: 151.2093)
+        SavedPlace(name: "Beijing", detail: "China", latitude: 39.9042, longitude: 116.4074),
+        SavedPlace(name: "Shanghai", detail: "China", latitude: 31.2304, longitude: 121.4737),
+        SavedPlace(name: "Hong Kong", detail: "China", latitude: 22.3193, longitude: 114.1694),
+        SavedPlace(name: "Taipei", detail: "Taiwan", latitude: 25.0330, longitude: 121.5654),
+        SavedPlace(name: "New York", detail: "United States", latitude: 40.7128, longitude: -74.0060),
+        SavedPlace(name: "San Francisco", detail: "United States", latitude: 37.7749, longitude: -122.4194),
+        SavedPlace(name: "Los Angeles", detail: "United States", latitude: 34.0522, longitude: -118.2437),
+        SavedPlace(name: "London", detail: "United Kingdom", latitude: 51.5072, longitude: -0.1276),
+        SavedPlace(name: "Paris", detail: "France", latitude: 48.8566, longitude: 2.3522),
+        SavedPlace(name: "Tokyo", detail: "Japan", latitude: 35.6762, longitude: 139.6503),
+        SavedPlace(name: "Singapore", detail: "Singapore", latitude: 1.3521, longitude: 103.8198),
+        SavedPlace(name: "Sydney", detail: "Australia", latitude: -33.8688, longitude: 151.2093)
     ]
 }

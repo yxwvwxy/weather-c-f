@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleDevelopmentRegion</key>
-    <string>zh-Hans</string>
+    <string>en</string>
     <key>CFBundleDisplayName</key>
-    <string>天气 C+F</string>
+    <string>Weather C+F</string>
     <key>CFBundleExecutable</key>
     <string>Weather C+F</string>
     <key>CFBundleIdentifier</key>
@@ -19,7 +19,7 @@
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>
-    <string>1</string>
+    <string>8</string>
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.weather</string>
     <key>LSMinimumSystemVersion</key>
@@ -27,9 +27,13 @@
     <key>NSHighResolutionCapable</key>
     <true/>
     <key>NSLocationUsageDescription</key>
-    <string>用来显示你所在城市的摄氏度和华氏度。</string>
+    <string>Used to show live Celsius and Fahrenheit for your current location.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>用来显示你所在城市的摄氏度和华氏度。</string>
+    <string>Used to show live Celsius and Fahrenheit for your current location.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Used to keep showing live Celsius and Fahrenheit as you move.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Used to keep showing live Celsius and Fahrenheit as you move.</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
 </dict>

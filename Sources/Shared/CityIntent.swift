@@ -3,7 +3,7 @@ import Foundation
 import WidgetKit
 
 struct CityEntity: AppEntity, Identifiable, Hashable {
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "城市"
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "City"
     static var defaultQuery = CityQuery()
 
     var id: String
@@ -72,6 +72,6 @@ struct WeatherWidgetIntent: WidgetConfigurationIntent {
     var city: CityEntity?
 
     func resolvedPlace() -> SavedPlace? {
-        city?.place ?? WeatherStore.place
+        city?.place ?? WeatherStore.place ?? PopularCity.all.first
     }
 }
