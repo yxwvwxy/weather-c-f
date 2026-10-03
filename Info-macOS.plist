@@ -8,6 +8,10 @@
     <string>Weather C+F</string>
     <key>CFBundleExecutable</key>
     <string>Weather C+F</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
     <key>CFBundleIdentifier</key>
     <string>com.weathercf.app</string>
     <key>CFBundleInfoDictionaryVersion</key>
@@ -19,7 +23,7 @@
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>
-    <string>8</string>
+    <string>9</string>
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.weather</string>
     <key>LSMinimumSystemVersion</key>
