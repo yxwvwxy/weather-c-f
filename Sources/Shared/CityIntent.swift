@@ -65,10 +65,10 @@ struct CityQuery: EntityStringQuery {
 }
 
 struct WeatherWidgetIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "天气 C+F"
-    static var description = IntentDescription("同时显示摄氏度和华氏度。")
+    static var title: LocalizedStringResource = "Weather C+F"
+    static var description = IntentDescription("See Fahrenheit and Celsius together.")
 
-    @Parameter(title: "城市")
+    @Parameter(title: "City")
     var city: CityEntity?
 
     func resolvedPlace() -> SavedPlace? {
