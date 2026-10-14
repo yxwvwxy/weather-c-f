@@ -120,9 +120,7 @@ struct WeatherCard: View {
                         .opacity(0.8)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
-                    Image(systemName: icon(for: hour))
-                        .font(.system(size: compact ? 14 : 18))
-                        .symbolRenderingMode(.hierarchical)
+                    conditionIcon(icon(for: hour), pointSize: compact ? 14 : 18)
                         .frame(height: compact ? 16 : 22)
                     Text("\(WeatherSnapshot.format(hour.fahrenheit))°F")
                         .font(.system(size: compact ? 12 : 16, weight: .semibold))
@@ -145,9 +143,7 @@ struct WeatherCard: View {
                     Text(shortWeekday(day.weekday))
                         .font(compact ? .caption.weight(.semibold) : .subheadline.weight(.semibold))
                         .frame(width: compact ? 30 : 40, alignment: .leading)
-                    Image(systemName: dayLook.symbol)
-                        .font(compact ? .caption : .body)
-                        .symbolRenderingMode(.hierarchical)
+                    conditionIcon(dayLook.symbol, pointSize: compact ? 13 : 16)
                         .frame(width: compact ? 14 : 18)
                     dualTemp(lowC: day.lowC, high: false)
                     DayRangeBar(low: day.lowC, high: day.highC, weekLow: weekLow, weekHigh: weekHigh)
@@ -175,6 +171,26 @@ struct WeatherCard: View {
     private func shortWeekday(_ name: String) -> String {
         if name.count <= 3 { return name }
         return String(name.prefix(3))
+    }
+
+    /// Sun marks use the temperature-bar yellow. Everything else stays the card cream.
+    @ViewBuilder
+    private func conditionIcon(_ name: String, pointSize: CGFloat) -> some View {
+        let sun = Color(red: 0.98, green: 0.86, blue: 0.45)
+        let cream = Color(red: 0.97, green: 0.96, blue: 0.90)
+        let rain = Color(red: 0.45, green: 0.78, blue: 0.95)
+        let image = Image(systemName: name)
+            .font(.system(size: pointSize))
+        switch name {
+        case "sun.max.fill", "sun.min.fill":
+            image.symbolRenderingMode(.palette).foregroundStyle(sun)
+        case "cloud.sun.fill", "sunrise.fill", "sunset.fill":
+            image.symbolRenderingMode(.palette).foregroundStyle(cream, sun)
+        case "cloud.sun.rain.fill":
+            image.symbolRenderingMode(.palette).foregroundStyle(cream, sun, rain)
+        default:
+            image.symbolRenderingMode(.hierarchical)
+        }
     }
 
     private func icon(for hour: HourlyForecast) -> String {
