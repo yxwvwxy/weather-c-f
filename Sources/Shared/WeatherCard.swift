@@ -45,7 +45,7 @@ struct WeatherCard: View {
     }
 
     private var medium: some View {
-        VStack(alignment: .leading, spacing: compact ? 0 : 16) {
+        VStack(alignment: .leading, spacing: compact ? 2 : 16) {
             header
             hourlyRow(maxItems: 6)
         }
@@ -63,7 +63,7 @@ struct WeatherCard: View {
 
     private var header: some View {
         HStack(alignment: .top, spacing: 12) {
-            VStack(alignment: .leading, spacing: isCompactMedium ? -6 : (compact ? 2 : 4)) {
+            VStack(alignment: .leading, spacing: isCompactMedium ? 1 : (compact ? 2 : 4)) {
                 placeRow
                 Text("\(WeatherSnapshot.format(snapshot.fahrenheit))°F")
                     .font(.system(size: compact ? 40 : 60, weight: .thin, design: .rounded))
@@ -114,17 +114,17 @@ struct WeatherCard: View {
     }
 
     private func hourlyRow(maxItems: Int) -> some View {
-        let dense = isCompactMedium
+        let gap: CGFloat = isCompactMedium ? 2 : (compact ? 4 : 6)
         return HStack(alignment: .top, spacing: 0) {
             ForEach(snapshot.hourly.prefix(maxItems)) { hour in
-                VStack(spacing: dense ? -2 : (compact ? 4 : 6)) {
+                VStack(spacing: gap) {
                     Text(hour.label)
                         .font(.system(size: compact ? 10 : 13, weight: .semibold))
                         .opacity(0.8)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                     conditionIcon(icon(for: hour), pointSize: compact ? 14 : 18)
-                        .frame(height: dense ? 12 : (compact ? 16 : 22))
+                        .frame(height: compact ? 16 : 22)
                     Text("\(WeatherSnapshot.format(hour.fahrenheit))°F")
                         .font(.system(size: compact ? 12 : 16, weight: .semibold))
                     Text("\(WeatherSnapshot.format(hour.celsius))°C")

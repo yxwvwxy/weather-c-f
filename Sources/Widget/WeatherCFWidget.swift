@@ -114,20 +114,11 @@ struct WeatherWidgetView: View {
         } else if family == .accessoryRectangular {
             accessoryRectangular
         } else {
-            card.padding(contentPadding)
+            card.padding(16)
         }
         #else
-        card.padding(contentPadding)
+        card.padding(16)
         #endif
-    }
-
-    /// The medium card is half as tall as the large one, so the same reading
-    /// needs a larger inset or it sits closer to the rim than the other sizes.
-    private var contentPadding: EdgeInsets {
-        if family == .systemMedium {
-            return EdgeInsets(top: 36, leading: 28, bottom: 36, trailing: 28)
-        }
-        return EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
     }
 
     @ViewBuilder
