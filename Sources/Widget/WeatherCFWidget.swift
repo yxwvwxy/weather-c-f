@@ -85,7 +85,6 @@ struct WeatherCFWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: WeatherWidgetIntent.self, provider: WeatherProvider()) { entry in
             WeatherWidgetView(entry: entry)
-                .padding(16)
                 .containerBackground(for: .widget) {
                     Color(red: 0.16, green: 0.18, blue: 0.15)
                 }
@@ -115,11 +114,17 @@ struct WeatherWidgetView: View {
         } else if family == .accessoryRectangular {
             accessoryRectangular
         } else {
-            card
+            card.padding(contentPadding)
         }
         #else
-        card
+        card.padding(contentPadding)
         #endif
+    }
+
+    /// The medium family is short, so it needs a slightly larger inset
+    /// or the hourly row sits on the rim.
+    private var contentPadding: CGFloat {
+        family == .systemMedium ? 18 : 16
     }
 
     @ViewBuilder

@@ -45,11 +45,11 @@ struct WeatherCard: View {
     }
 
     private var medium: some View {
-        VStack(alignment: .leading, spacing: compact ? 12 : 16) {
+        VStack(alignment: .leading, spacing: compact ? 8 : 16) {
             header
             hourlyRow(maxItems: 6)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 
     private var large: some View {
