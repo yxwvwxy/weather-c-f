@@ -8,8 +8,8 @@ It follows your location, and you can search for another city. Leave the card pi
 
 Requires macOS 14 or later. On first open, right-click the app and choose Open.
 
-![Large widget](Design/widget-large.png)
+<img src="Design/widget-large.png" alt="Large widget" width="320">
 
-![Medium widget](Design/widget-medium.png)
+<img src="Design/widget-medium.png" alt="Medium widget" width="320">
 
-![Small widget](Design/widget-small.png)
+<img src="Design/widget-small.png" alt="Small widget" width="150">
