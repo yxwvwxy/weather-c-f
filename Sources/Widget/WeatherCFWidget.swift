@@ -125,7 +125,7 @@ struct WeatherWidgetView: View {
     /// needs a larger inset or it sits closer to the rim than the other sizes.
     private var contentPadding: EdgeInsets {
         if family == .systemMedium {
-            return EdgeInsets(top: 26, leading: 24, bottom: 26, trailing: 24)
+            return EdgeInsets(top: 36, leading: 28, bottom: 36, trailing: 28)
         }
         return EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
     }
