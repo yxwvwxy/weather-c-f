@@ -45,7 +45,7 @@ struct WeatherCard: View {
     }
 
     private var medium: some View {
-        VStack(alignment: .leading, spacing: compact ? 8 : 16) {
+        VStack(alignment: .leading, spacing: compact ? 0 : 16) {
             header
             hourlyRow(maxItems: 6)
         }
@@ -63,7 +63,7 @@ struct WeatherCard: View {
 
     private var header: some View {
         HStack(alignment: .top, spacing: 12) {
-            VStack(alignment: .leading, spacing: compact ? 2 : 4) {
+            VStack(alignment: .leading, spacing: isCompactMedium ? -4 : (compact ? 2 : 4)) {
                 placeRow
                 Text("\(WeatherSnapshot.format(snapshot.fahrenheit))°F")
                     .font(.system(size: compact ? 40 : 60, weight: .thin, design: .rounded))
@@ -81,6 +81,8 @@ struct WeatherCard: View {
             }
         }
     }
+
+    private var isCompactMedium: Bool { compact && layout == .medium }
 
     private var placeRow: some View {
         Button {
@@ -112,16 +114,17 @@ struct WeatherCard: View {
     }
 
     private func hourlyRow(maxItems: Int) -> some View {
-        HStack(alignment: .top, spacing: 0) {
+        let dense = isCompactMedium
+        return HStack(alignment: .top, spacing: 0) {
             ForEach(snapshot.hourly.prefix(maxItems)) { hour in
-                VStack(spacing: compact ? 4 : 6) {
+                VStack(spacing: dense ? 0 : (compact ? 4 : 6)) {
                     Text(hour.label)
                         .font(.system(size: compact ? 10 : 13, weight: .semibold))
                         .opacity(0.8)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                     conditionIcon(icon(for: hour), pointSize: compact ? 14 : 18)
-                        .frame(height: compact ? 16 : 22)
+                        .frame(height: dense ? 14 : (compact ? 16 : 22))
                     Text("\(WeatherSnapshot.format(hour.fahrenheit))°F")
                         .font(.system(size: compact ? 12 : 16, weight: .semibold))
                     Text("\(WeatherSnapshot.format(hour.celsius))°C")

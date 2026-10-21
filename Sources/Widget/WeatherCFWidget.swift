@@ -121,10 +121,13 @@ struct WeatherWidgetView: View {
         #endif
     }
 
-    /// The medium family is short, so it needs a slightly larger inset
-    /// or the hourly row sits on the rim.
-    private var contentPadding: CGFloat {
-        family == .systemMedium ? 18 : 16
+    /// The medium card is half as tall as the large one, so the same reading
+    /// needs a larger inset or it sits closer to the rim than the other sizes.
+    private var contentPadding: EdgeInsets {
+        if family == .systemMedium {
+            return EdgeInsets(top: 26, leading: 24, bottom: 26, trailing: 24)
+        }
+        return EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
     }
 
     @ViewBuilder
