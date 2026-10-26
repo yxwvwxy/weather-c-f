@@ -13,6 +13,8 @@ final class LocationProvider: NSObject, ObservableObject {
     private let manager = CLLocationManager()
     private var locationContinuation: CheckedContinuation<CLLocation, Error>?
     private var authContinuation: CheckedContinuation<CLAuthorizationStatus, Never>?
+    private var authorizationReady: CheckedContinuation<CLAuthorizationStatus, Never>?
+    private var sawAuthorizationCallback = false
     private var lastReported: CLLocation?
 
     override init() {
@@ -44,24 +46,15 @@ final class LocationProvider: NSObject, ObservableObject {
         manager.stopUpdatingLocation()
     }
 
+    /// Asks only while the app is in use, and only when the system has no saved choice yet.
     private func ensureAuthorized() async throws {
-        switch manager.authorizationStatus {
+        switch await resolvedAuthorization() {
         case .authorizedAlways, .authorizedWhenInUse:
             return
         case .denied, .restricted:
             throw WeatherError.locationDenied
         case .notDetermined:
-            #if os(macOS)
-            manager.requestAlwaysAuthorization()
-            #else
-            manager.requestWhenInUseAuthorization()
-            #endif
-            let status = await withCheckedContinuation { (continuation: CheckedContinuation<CLAuthorizationStatus, Never>) in
-                if let existing = authContinuation {
-                    existing.resume(returning: manager.authorizationStatus)
-                }
-                authContinuation = continuation
-            }
+            let status = await requestWhenInUse()
             switch status {
             case .authorizedAlways, .authorizedWhenInUse:
                 return
@@ -72,6 +65,36 @@ final class LocationProvider: NSObject, ObservableObject {
             }
         @unknown default:
             throw WeatherError.locationFailed
+        }
+    }
+
+    /// macOS reports `.notDetermined` until the first authorization callback, even after a previous Allow.
+    /// Wait for that callback so a later launch does not show the prompt again.
+    private func resolvedAuthorization() async -> CLAuthorizationStatus {
+        if sawAuthorizationCallback {
+            return manager.authorizationStatus
+        }
+        return await withCheckedContinuation { continuation in
+            authorizationReady = continuation
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
+                guard let waiter = self.authorizationReady else { return }
+                self.authorizationReady = nil
+                self.sawAuthorizationCallback = true
+                waiter.resume(returning: self.manager.authorizationStatus)
+            }
+        }
+    }
+
+    private func requestWhenInUse() async -> CLAuthorizationStatus {
+        await withCheckedContinuation { continuation in
+            authContinuation = continuation
+            manager.requestWhenInUseAuthorization()
+            let immediate = manager.authorizationStatus
+            if immediate != .notDetermined, let pending = authContinuation {
+                authContinuation = nil
+                pending.resume(returning: immediate)
+            }
         }
     }
 
@@ -164,8 +187,15 @@ extension LocationProvider: CLLocationManagerDelegate {
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
         Task { @MainActor in
-            authContinuation?.resume(returning: status)
-            authContinuation = nil
+            sawAuthorizationCallback = true
+            if let waiter = authorizationReady {
+                authorizationReady = nil
+                waiter.resume(returning: status)
+            }
+            if let pending = authContinuation {
+                authContinuation = nil
+                pending.resume(returning: status)
+            }
         }
     }
 }
